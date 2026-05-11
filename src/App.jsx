@@ -1,40 +1,26 @@
-// src/App.jsx
-import React from 'react';
-import Card from './Card'; // 💡 引入剛剛建立的 Card 組件
+import Card from "./Card";
+import TodoList from "./TodoList"; // 1. 確保有引入檔案
+import "./App.css";
 
 function App() {
-  const userData = [
-    { id: 1, name: "張小明", title: "前端工程師", avatar: "https://i.pravatar.cc/150?img=11" },
-    { id: 2, name: "李美玲", title: "UI/UX 設計師", avatar: "https://i.pravatar.cc/150?img=5" },
-    { id: 3, name: "王大同", title: "產品經理", avatar: "https://i.pravatar.cc/150?img=12" },
-    { id: 4, name: "陳小美", title: "公關經理", avatar: "https://i.pravatar.cc/150?img=7" }
+  const members = [
+    { id: 1, name: "張小明", title: "前端工程師", avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmdxP-awyQIA812UJptzXQ9hhY-TLUkB61ng&s" },
+    { id: 2, name: "李美玲", title: "UI/UX 設計師", avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKstkObOhdDq6HPins65-guz-H3WbhKzQLGQ&s" }
   ];
 
-  const containerStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '20px',
-    padding: '40px',
-    fontFamily: 'Arial, sans-serif',
-    border: '1px dotted gray',
-    margin: '10px',
-    borderRadius: '20px'
-  };
-
   return (
-    <div>
-      <h1 style={{ textAlign: 'center' }}>團隊成員</h1>
-      <div style={containerStyle}>
-        {/* 使用 .map() 渲染多個 Card */}
-        {userData.map((user) => (
-          <Card 
-            key={user.id} 
-            name={user.name} 
-            title={user.title} 
-            avatar={user.avatar} 
-          />
+    <div className="container">
+      <h1 style={{ textAlign: "center", padding: "20px" }}>我的團隊與任務</h1>
+      
+      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+        {members.map(m => (
+          <Card key={m.id} name={m.name} title={m.title} avatar={m.avatar} />
         ))}
       </div>
+
+      {/* 2. 加上這兩行，TodoList 才會出現在畫面上 */}
+      <hr style={{ margin: "40px 0", opacity: 0.3 }} />
+      <TodoList /> 
     </div>
   );
 }
